@@ -101,37 +101,78 @@ _Task execution details with run history and performance metrics_
 ```
 .
 ├── dags/
-│   └── retail_etl_dag.py          # Main Airflow DAG with 5 tasks
+│   └── retail_etl_dag.py              # Main Airflow DAG with 5 tasks
 ├── include/
-│   ├── config.yaml                # Configuration (S3, Snowflake)
-│   ├── logger.py                  # Custom logging utility
+│   ├── config.yaml                    # Configuration (S3, Snowflake)
+│   ├── config.example.yaml            # Configuration template
+│   ├── logger.py                      # Custom logging utility
 │   ├── etl/
-│   │   ├── extract_s3.py          # S3 data extraction
-│   │   ├── transform.py           # Business logic transformations
-│   │   └── load_s3_csv.py         # Write to S3 with error handling
+│   │   ├── __init__.py
+│   │   ├── extract_s3.py              # S3 data extraction
+│   │   ├── transform.py               # Business logic transformations
+│   │   ├── load_s3_csv.py             # Write to S3 with error handling
+│   │   └── load_snowflake.py          # Load to Snowflake warehouse
 │   ├── validations/
-│   │   ├── input_schemas.py       # Pandera schemas for raw data
-│   │   ├── output_schemas.py      # Pandera schemas for clean data
-│   │   ├── validate_inputs.py     # Input validation functions
-│   │   └── validate_outputs.py    # Output validation functions
+│   │   ├── __init__.py
+│   │   ├── input_schemas.py           # Pandera schemas for raw data
+│   │   ├── output_schemas.py          # Pandera schemas for clean data
+│   │   ├── validate_inputs.py         # Input validation functions
+│   │   └── validate_outputs.py        # Output validation functions
 │   └── utils/
 │       ├── __init__.py
-│       └── s3_paths.py            # S3 path utilities
-├── sql/
-│   └── setup_snowflake.txt        # DDL for Snowflake tables & roles
-├── tests/
-│   ├── test_validations.py        # Unit tests for data validators
-│   └── test_etl_functions.py      # Unit tests for transforms
+│       └── s3_paths.py                # S3 path utilities
+├── data/
+│   └── samples/
+│       ├── sales_data.csv             # Sample sales transactions
+│       └── product_data.json          # Sample product metadata
 ├── docs/
-│   └── Snapshots/                 # Pipeline screenshots
-├── .env.example                   # Environment variables template
+│   ├── API.md                         # API documentation
+│   ├── ARCHITECTURE.md                # Architecture overview
+│   ├── CONTRIBUTING.md                # Contributing guidelines
+│   ├── DEPLOYMENT.md                  # Deployment instructions
+│   ├── MONITORING.md                  # Monitoring & alerting guide
+│   ├── PROJECT_STRUCTURE.md           # Detailed project structure
+│   ├── QUICKSTART.md                  # Quick start guide
+│   ├── VALIDATION.md                  # Validation framework docs
+│   ├── snapshots/                     # Pipeline screenshots
+│   └── sql/
+│       ├── setup_snowflake.sql        # DDL for Snowflake tables & roles
+│       └── sample_queries.sql         # Sample analytics queries
+├── tests/
+│   ├── conftest.py                    # Pytest configuration
+│   ├── test_etl_functions.py          # Unit tests for transforms
+│   └── test_validations.py            # Unit tests for validators
+├── .env.example                       # Environment variables template
 ├── .gitignore
-├── Dockerfile                     # Astronomer container config
-├── requirements.txt               # Python dependencies
-└── README.md                      # This file
+├── Dockerfile                         # Astronomer container config
+├── airflow_settings.yaml              # Airflow configuration
+├── packages.txt                       # System dependencies
+├── pytest.ini                         # Pytest configuration
+├── requirements.txt                   # Python dependencies
+└── README.md                          # This file
 ```
 
-## 🚀 Getting Started
+## � Documentation
+
+All documentation files are organized in the `docs/` folder:
+
+| Document                                          | Purpose                                |
+| ------------------------------------------------- | -------------------------------------- |
+| [QUICKSTART.md](docs/QUICKSTART.md)               | 5-minute quick start guide             |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md)           | Complete system architecture overview  |
+| [DEPLOYMENT.md](docs/DEPLOYMENT.md)               | Production deployment guide            |
+| [MONITORING.md](docs/MONITORING.md)               | Monitoring, alerting & troubleshooting |
+| [VALIDATION.md](docs/VALIDATION.md)               | Data validation framework guide        |
+| [PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) | Detailed project structure reference   |
+| [API.md](docs/API.md)                             | API endpoint documentation             |
+| [CONTRIBUTING.md](docs/CONTRIBUTING.md)           | Contribution guidelines                |
+
+**SQL Resources** (`docs/sql/`):
+
+-   `setup_snowflake.sql` - DDL for creating Snowflake tables, warehouses, and roles
+-   `sample_queries.sql` - Example analytics queries for the cleaned data
+
+## �🚀 Getting Started
 
 ### Prerequisites
 
@@ -350,7 +391,7 @@ astro dev logs -f
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on:
+Contributions are welcome! Please read our [Contributing Guide](docs/CONTRIBUTING.md) for details on:
 
 -   Code of conduct
 -   Development process
