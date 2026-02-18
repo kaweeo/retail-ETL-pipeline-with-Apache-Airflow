@@ -1,0 +1,60 @@
+# Configuration template for Retail ETL Pipeline
+# IMPORTANT: Copy this file to config.yaml and fill in your actual values
+# Do NOT commit config.yaml to git - it contains sensitive information!
+
+# AWS Connection ID (configured in Airflow)
+aws_conn_id: aws_conn_id
+
+# AWS S3 Configuration
+s3:
+    # S3 bucket name (must be in same region as Snowflake for integration)
+    bucket: amzn-s3-retail-data-eucent2
+    # Raw data folder (where source data is stored)
+    raw_folder: retail-data/
+    # Cleansed data folder (where processed data will be stored)
+    cleansed_folder: cleansed-data/
+    # Path to raw sales data (CSV) - filename only, will be combined with raw_folder
+    sales_key: sales_data.csv
+    # Path to product data (JSON) - filename only, will be combined with raw_folder
+    products_key: product_data.json
+    # Path for processed/cleansed sales data - filename only, will be combined with cleansed_folder
+    processed_sales_key: sales_clean.csv
+
+# Snowflake Data Warehouse Configuration
+snowflake:
+    # Snowflake connection ID (configured in Airflow)
+    conn_id: my_snowflake_conn
+    # Snowflake account identifier (e.g., xy12345.us-east-1)
+    account: your_snowflake_account
+    # Snowflake warehouse name
+    warehouse: ETL_AIRFLOW_EX_WH
+    # Snowflake database name
+    database: your_database_name
+    # Bootstrap Snowflake objects (warehouse/database/schemas/stage)
+    bootstrap: true
+    warehouse_size: XSMALL
+    auto_suspend_seconds: 300
+    auto_resume: true
+    initially_suspended: true
+    # Enable/disable Snowflake loading
+    enabled: true
+    # Target schema/table for cleansed data
+    schema: CLEANSED
+    table_name: SALES_CLEAN
+    # Stage and file format location (defaults to RAW schema)
+    stage_schema: RAW
+    stage_name: S3_PROCESSED_STAGE
+    file_format_name: CSV_FORMAT
+    # Optional storage integration (recommended for production)
+    storage_integration: your_storage_integration
+    # Optional (not recommended) direct AWS credentials for stage creation
+    aws_key_id: ""
+    aws_secret_key: ""
+    aws_session_token: ""
+    # Optional explicit S3 stage URL (defaults to s3://<bucket>/<cleansed_folder>)
+    # Example: s3://amzn-s3-retail-data-eucent2/retail-data/cleansed/
+    s3_stage_url: ""
+    # Stage creation controls
+    create_stage: true
+    truncate_before_load: true
+    on_error: ABORT_STATEMENT

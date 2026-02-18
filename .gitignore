@@ -1,0 +1,60 @@
+.git
+.env
+.env.local
+.env.*.local
+.DS_Store
+airflow_settings.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.code-workspace
+
+# Airflow
+.astro/
+astro
+airflow-webserver.pid
+webserver_config.py
+airflow.cfg
+airflow.db
+logs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Configuration files with secrets
+include/config.yaml
+include/config.local.yaml
+*.secrets
+.secrets/
+secrets.yaml
+secrets.yml
+
+# Sensitive files
+.aws/credentials
+.aws/config
+
+# OS
+.DS_Store
+Thumbs.db
