@@ -81,7 +81,7 @@ CLEAN DATA (Ready for Analytics)
 
 ### DAG Graph View
 
-![Retail ETL Pipeline DAG](docs/Snapshots/retail_etl_pipeline-graph.png)
+![Retail ETL Pipeline DAG](docs/snapshots/retail_etl_pipeline-graph.png)
 
 Complete pipeline visualization showing all tasks and their dependencies:
 
@@ -93,7 +93,7 @@ Complete pipeline visualization showing all tasks and their dependencies:
 
 ### Task Execution History
 
-![DAG Task Instances](docs/Snapshots/dag_task_instances.png)
+![DAG Task Instances](docs/snapshots/dag_task_instances.png)
 _Task execution details with run history and performance metrics_
 
 ## 📁 Project Structure
@@ -389,22 +389,9 @@ astro dev logs -f
 -   [ ] Parquet output for better performance
 -   [ ] Incremental loading patterns
 
-## 🤝 Contributing
-
-Contributions are welcome! Please read our [Contributing Guide](docs/CONTRIBUTING.md) for details on:
-
--   Code of conduct
--   Development process
--   Pull request guidelines
--   Coding standards
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Authors
-
-**Kalin Kaveev** - Initial work - [kaweeo](https://github.com/kaweeo)
 
 ## 🙏 Acknowledgments
 
@@ -413,10 +400,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 -   AWS for cloud infrastructure
 -   Open source community for amazing tools
 
-## 📞 Contact & Support
-
--   **Issues**: [GitHub Issues](https://github.com/kaweeo/retail-ETL-pipeline-with-Apache-Airflow/issues)
--   **Documentation**: Check inline code comments and docstrings
--   **For questions**: Refer to the comprehensive logging output
 
 Built with ❤️ for production data engineering
